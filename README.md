@@ -5,7 +5,7 @@
 
 ## 📊 性能实测（RTX 3060 Ti，投影图 2048×64）
 
-![加速对比图](speedup.png?v=2)
+![加速对比图](speedup.png?v=3)
 
 | 点数/帧 | CPU（NumPy 单核） | GPU（PyTorch） | 加速比 |
 |---|---|---|---|

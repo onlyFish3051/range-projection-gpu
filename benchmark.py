@@ -91,11 +91,11 @@ def main():
         ax = axes[0]
         width = 0.35
         x = np.arange(len(xs))
-        b1 = ax.bar(x - width / 2, cpu_ms, width, label="CPU (NumPy 单核)", color="#d95926")
-        b2 = ax.bar(x + width / 2, gpu_ms, width, label="GPU (PyTorch, RTX 3060 Ti)", color="#3987e5")
+        b1 = ax.bar(x - width / 2, cpu_ms, width, label="CPU (NumPy)", color="#d95926")
+        b2 = ax.bar(x + width / 2, gpu_ms, width, label="GPU (PyTorch)", color="#3987e5")
         ax.set_xticks(x, [f"{v}k" for v in xs])
-        ax.set_ylabel("单帧耗时 (ms)")
-        ax.set_title("单帧投影耗时：CPU vs GPU")
+        ax.set_ylabel("Latency per frame (ms)")
+        ax.set_title("Single-frame projection latency")
         ax.legend()
         for bars in (b1, b2):
             for b in bars:
@@ -105,8 +105,8 @@ def main():
         ax = axes[1]
         ax.bar(x, speedups, color="#199e70")
         ax.set_xticks(x, [f"{v}k" for v in xs])
-        ax.set_ylabel("加速比 (×)")
-        ax.set_title("GPU 加速比")
+        ax.set_ylabel("Speedup (×)")
+        ax.set_title("GPU speedup")
         for xi, s in zip(x, speedups):
             ax.text(xi, s + 0.5, f"{s:.1f}×", ha="center", fontsize=11, fontweight="bold")
         fig.tight_layout()
