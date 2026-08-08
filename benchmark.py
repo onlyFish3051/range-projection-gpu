@@ -70,6 +70,16 @@ def main():
         import matplotlib
         matplotlib.use("Agg")
         import matplotlib.pyplot as plt
+        from matplotlib import font_manager
+
+        # 中文字体（Linux Noto Sans CJK），避免图表乱码
+        for fp in ("/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+                   "/usr/share/fonts/opentype/noto/NotoSansCJK-Medium.ttc"):
+            if fp and __import__("os").path.exists(fp):
+                font_manager.fontManager.addfont(fp)
+        plt.rcParams["font.family"] = ["Noto Sans CJK SC", "Noto Sans CJK JP",
+                                       "AR PL UMing CN", "DejaVu Sans"]
+        plt.rcParams["axes.unicode_minus"] = False
 
         xs = [n // 1000 for n, _, _ in results]
         cpu_ms = [c for _, c, _ in results]
